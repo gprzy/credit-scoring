@@ -1,0 +1,105 @@
+\section{Protocolo Experimental}
+Nessa seção discutiremos o protocolo experimental acerca desse trabalho. Inicialmente vamos descrever os modelos de \textit{Machine Learning utilizados}, para então seguirmos para as métricas utilizadas na validação dos modelos, bem como técnicas distintas de seleção de atributos, entre outros.
+
+\subsection{Modelos de \textit{Machine Learning}}
+
+\subsubsection{\textbf{Random Forest}}
+
+O modelo \textit{Random Forest} é um classificador baseado em árvores de decisão, mais especificamente, um \textit{ensemble} destas \cite{b1}.
+
+\subsubsection{\textbf{AdaBoost}}
+
+Primeiro algoritmo prático de \textit{boosting}, tratando-se de um \textit{ensemble}, desenvolvido por Freund e Schapire, e aplicado em inúmeras áreas do conhecimento \cite{b2}.
+
+\subsubsection{\textbf{Regressão Logística}}
+
+A Regressão Logística é um dos modelos mais aplicados em problemas de análise de crédito. Trata-se de um modelo linear, bem como um classificador, de maneira que o atributo alvo é uma variável categórica. Em uma tarefa binária, o modelo linear criado se baseia em uma função sigmóide \cite{b1}.
+
+\subsubsection{\textbf{XGBoost}}
+
+\textit{XGBoost} é um \textit{ensemble} baseado em árvores de decisão, utilizado em muitas competições (e.g. \textit{Kaggle} e em inúmeras áreas para atingir resultados a nível do estado da arte. O \textit{XGBoost} realiza internamente o processo de \textit{Gradient Boosting}, de maneira a otimizar seus resultados \cite{b3}.
+
+\subsubsection{\textbf{LightGBM}}
+
+É um modelo baseado no \textit{XGBoost}, sendo também um \textit{ensemble}, que utiliza internamente uma técnica de \textit{Gradient Boosting}. Esse modelo apresenta algumas vantagens, tais como treinamento rápido e alta eficiência, baixo custo de memória, ótimos valores de acurácia e suporte a para computação distribuída \cite{b4}.
+
+\subsection{Métricas de Desempenho dos Modelos}
+
+Para mensurar a qualidade dos modelos testados em discernir entre as duas classes classificadas, utilizamos o \textit{Kolmogorov-Smirnov} (KS). Acerca do funcionamento do KS, esta indica a distância máxima entre as funções de distribuição das probabilidades cumulativas (em ingês, \textit{cumulative probability distribution function}, ou cdfs).
+
+\subsection{Seleção de Atributos}
+
+Para a seleção de atributos, utilizamos duas abordagesn distintas: na primeira delas, utilizamos um método de filtro, \textit{SelecKBest}, do módulo \textit{sklearn}; a segunda abordagem foi com as importâncias de atributos relativas aos modelos treinados, de maneira que conduzimos uma \textit{pipeline} onde obtemos apenas as \textit{features} mais relevantes. Por fim, realizamos uma seleção de atributos baseado nas etapas anteriores, combinando variáveis de maneira heurística.
+
+\subsection{Parâmetros dos Modelos}
+
+Tabela 1: Parâmetros Utilizados nos Modelos
+\begin{center}
+\begin{tabular}{ll}
+
+    \Xhline{2.5\arrayrulewidth}
+    \textbf{Classificador} &         \textbf{Parâmetros} \\
+    \Xhline{2.5\arrayrulewidth}
+
+    RandomForestClassifier &  \texttt{\footnotesize{n\_estimators: 100}} \\
+    \hline
+    XGBClassifier &  \texttt{\footnotesize{n\_estimators=600}}, \\
+    \textit{} &  \texttt{\footnotesize{learning\_rate=0.05}}, \\
+    \textit{} &  \texttt{\footnotesize{max\_depth=3}}, \\
+    \textit{} &  \texttt{\footnotesize{subsample=0.8}}, \\
+    \textit{} &  \texttt{\footnotesize{colsample\_bytree=0.9}}, \\
+    \textit{} &  \texttt{\footnotesize{gamma=1}} \\
+    \hline
+    AdaBoostClassifier &  \texttt{\footnotesize{\textit{defaut}}} \\
+    \hline
+    LogisticRegression &  \texttt{\footnotesize{\textit{defaut}}} \\
+    \hline
+    LGBMClassifier &  \texttt{\footnotesize{n\_estimators=600}}, \\
+    \textit{} &  \texttt{\footnotesize{learning\_rate=0.05}}, \\
+    \textit{} &  \texttt{\footnotesize{max\_depth=3}}, \\
+    \textit{} &  \texttt{\footnotesize{subsample=0.8}}, \\
+    \textit{} &  \texttt{\footnotesize{colsample\_bytree=0.9}}, \\
+    \textit{} &  \texttt{\footnotesize{gamma=1}} \\
+
+\end{tabular}
+\\ Fonte: Condução dos experimentos pelos autores do artigo.
+\end{center}
+
+\subsection{Bibliotecas Utilizadas}
+
+Apresentaremos as bibliotecas utilizadas e suas respectivas versões, da qual conduzimos a criação dos modelos e testes variados, bem como plotagem de gráficos e manipulações de dados. As bibliotecas apresentadas pertencem  ao \textit{Python} na versão 3.8.
+
+Tabela 2: Bibliotecas Utilizadas
+\begin{center}
+\begin{tabular}{lr}
+
+    \Xhline{2.5\arrayrulewidth}
+    \textbf{Biblioteca} & \textbf{Versão} \\
+    \Xhline{2.5\arrayrulewidth}
+
+    \texttt{\footnotesize{sklearn}} &  \small{0.22.2.post1} \\
+    \hline
+    \texttt{\footnotesize{pandas}} &  \small{1.1.5} \\
+    \hline
+    \texttt{\footnotesize{numpy}} &  \small{1.19.5} \\
+    \hline
+    \texttt{\footnotesize{scipy}} &  \small{1.4.1} \\
+    \texttt{\footnotesize{matplotlib}} &  \small{3.2.2} \\
+    \hline
+    \texttt{\footnotesize{seaborn}} &  \small{0.11.2} \\
+    \hline
+    \texttt{\footnotesize{xgboost}} &  \small{0.90} \\
+    \hline
+    \texttt{\footnotesize{statsmodels}} &  \small{0.10.2} \\
+
+\end{tabular}
+\\ Fonte: Condução dos experimentos pelos autores do artigo.
+\end{center}
+
+\subsection{Base de Dados}
+
+A base utilizada é de uma instituição financeira do Brasil, e contém um ruído de maneira a modificar os dados originais. Os dados de treino utilizados podem ser encontrados em \url{https://www.ppgia.pucpr.br/~jean.barddal/datascience/train.csv}; os dados de teste podem ser encontrados em \url{https://www.ppgia.pucpr.br/~jean.barddal/datascience/test.csv}.
+
+\subsection{Estratégias de Validação}
+
+Já possuímos a base de trieno e teste divididas. No caso da base de teste, temos 215.178 instâncias; para a base de teste, temos 92.069. De maneira a validar nosso modelo, considerando ainda que não temos acesso aos rótulos dos dados de teste, utilizamos a estratégia \textit{\textbf{Holdout}} para validar nosso modelo ainda nos dados de treino. Nos testes com os modelos, separamos 75\% da base de treino para treinar os modelos; os demais 25\% foram destinados à validação.
