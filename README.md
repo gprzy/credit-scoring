@@ -3,6 +3,7 @@
 <img src="https://github.com/gprzy/credit-scoring/blob/main/assets/puc.png" width="30%" height="30%"/>
 
 [![Open in colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gprzy/credit-scoring/blob/main/credit_scoring.ipynb)
+[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/gprzy/credit-scoring/blob/main/LICENSE)
 
 Final project of the Data Science certifying discipline, of the Bachelor's Degree in Computer Science, at [PUCPR](). In this project, supervised learning algorithms were applied in the credit score prediction task, using data from a Brazilian financial institution.
 
